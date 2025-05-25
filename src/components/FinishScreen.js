@@ -1,4 +1,4 @@
-function FinishScreen({ points, maxPossiblePoints }) {
+function FinishScreen({ points, maxPossiblePoints, dispatch }) {
   const percentage = (points / maxPossiblePoints) * 100;
 
   let emoji;
@@ -13,13 +13,21 @@ function FinishScreen({ points, maxPossiblePoints }) {
   }
 
   return (
-    <p className="result">
-      Your score is {points} out of {maxPossiblePoints} points.
-      <br />
-      {Math.ceil(percentage)}% correct answers.
-      <br />
-      {emoji}
-    </p>
+    <>
+      <p className="result">
+        Your score is {points} out of {maxPossiblePoints} points.
+        <br />
+        {Math.ceil(percentage)}% correct answers.
+        <br />
+        {emoji}
+      </p>
+      <button
+        className="btn btn-ui"
+        onClick={() => dispatch({ type: "restart" })}
+      >
+        Restart
+      </button>
+    </>
   );
 }
 
